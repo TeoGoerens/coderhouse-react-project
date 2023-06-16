@@ -1,10 +1,12 @@
 import "./App.css";
-import MyNavbar from "./components/Navbar.jsx";
+import ItemListContainer from "./components/ItemListContainer";
+import MyNavbar from "./components/Navbar";
 
 function App() {
   return (
     <>
       <MyNavbar />
+      <ItemListContainer greeting="Welcome to MH Store" />
     </>
   );
 }
