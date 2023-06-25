@@ -1,11 +1,11 @@
 import "./App.css";
-import ItemListContainer from "./components/ItemListContainer";
-import MyNavbar from "./components/Navbar";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <>
-      <MyNavbar />
+      <Navbar />
       <ItemListContainer greeting="Welcome to MH Store" />
     </>
   );
