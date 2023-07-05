@@ -1,6 +1,9 @@
 import { useState } from "react";
 import CartWidget from "./CartWidget";
 import "./NavbarStyle.css";
+import { NavLink } from "react-router-dom";
+import data from "../../assets/data/products.json";
+import { restyleCategory } from "../../helpers/helpers";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
@@ -9,13 +12,16 @@ function Navbar() {
     setClicked(!clicked);
   };
 
+  let categories = data.map((product) => product.category);
+  let uniqueCategories = [...new Set(categories)].sort();
+
   return (
     <>
       <nav className="navbar__items">
-        <a href="/" className="navbar__logo">
+        <NavLink to="/" className="navbar__logo">
           <h1 className="logo">MH Store </h1>
           <span class="material-symbols-outlined">liquor</span>
-        </a>
+        </NavLink>
         <div className="navbar__icons" onClick={handleClicked}>
           {clicked ? (
             <span class="material-symbols-outlined">close</span>
@@ -24,22 +30,18 @@ function Navbar() {
           )}
         </div>
         <ul className={clicked ? "navbar__menu active" : "navbar__menu"}>
+          {uniqueCategories.map((category, index) => (
+            <li key={index}>
+              <NavLink to={`/category/${category}`}>
+                {restyleCategory(category)}
+              </NavLink>
+            </li>
+          ))}
+
           <li>
-            <a href="/">Sparkling Wines</a>
-          </li>
-          <li>
-            <a href="/">Still Wines</a>
-          </li>
-          <li>
-            <a href="/">Champagnes</a>
-          </li>
-          <li>
-            <a href="/">Spirits</a>
-          </li>
-          <li>
-            <a href="/">
+            <NavLink to="/">
               <CartWidget />
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>

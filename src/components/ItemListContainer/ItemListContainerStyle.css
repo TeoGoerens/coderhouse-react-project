@@ -1,5 +1,11 @@
-.heading {
-  margin-top: 120px;
-  display: flex;
-  justify-content: center;
+.itemListContainer {
+  margin: 120px auto 0;
+  width: 95%;
+}
+
+.itemListContainer h1 {
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-weight: lighter;
+  margin-bottom: 2rem;
 }
