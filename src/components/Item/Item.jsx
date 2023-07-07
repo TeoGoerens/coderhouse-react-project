@@ -15,7 +15,7 @@ function Item({ product }) {
       <h6>Stock: {numberFormatting(product.stock)}</h6>
       <p>{product.description}</p>
 
-      <Link className="itemCard__button" to={`item/${product.id}`}>
+      <Link className="itemCard__button" to={`/item/${product.id}`}>
         See more
       </Link>
     </div>

@@ -1,9 +1,9 @@
 import "./ItemListContainerStyle.css";
-import data from "../../assets/data/products.json";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { restyleCategory } from "../../helpers/helpers";
+import data from "../../assets/data/products.json";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
@@ -19,10 +19,8 @@ function ItemListContainer() {
     prom.then((result) => {
       if (id) {
         setProducts(result.filter((product) => product.category === id));
-        console.log(id);
       } else {
         setProducts(result);
-        console.log(id);
       }
     });
   }, [id]);

@@ -1,0 +1,21 @@
+.ItemDetail__ImageContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.ItemDetail__ImageContainer img {
+  width: 350px;
+}
+
+.ItemDetail__TextContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.ItemDetail__TextContainer h2 {
+  text-align: center;
+  font-weight: bold;
+}
