@@ -23,7 +23,7 @@ function ItemDetailContainer() {
 
   return (
     <div className="ItemDetailContainer">
-      <ItemDetail product={product} />
+      {product.length !== 0 && <ItemDetail product={product} />}
     </div>
   );
 }
