@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ItemDetailStyle.css";
 import { numberFormatting, restyleCategory } from "../../helpers/helpers";
 import ItemCount from "../ItemCount/ItemCount";
+import { CartContext } from "../../context/CartContext";
 
 function ItemDetail({ product }) {
+  const { cart, addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  console.log(cart);
 
   const handleSustract = () => {
     quantity > 1 && setQuantity(quantity - 1);
   };
 
   const handleAdd = () => {
-    setQuantity(quantity + 1);
+    quantity < product.stock && setQuantity(quantity + 1);
   };
 
   return (
@@ -37,7 +40,14 @@ function ItemDetail({ product }) {
           handleSustract={handleSustract}
           handleAdd={handleAdd}
         />
-        <button className="ItemDetail__AddToCart">Add to cart</button>
+        <button
+          className="ItemDetail__AddToCart"
+          onClick={() => {
+            addToCart(product, quantity);
+          }}
+        >
+          Add to cart
+        </button>
       </div>
     </>
   );
