@@ -33,7 +33,7 @@
   text-align: justify;
 }
 
-.ItemDetail__TextContainer button {
+.ItemDetail__AddToCart {
   text-decoration: none;
   border: 1px solid gray;
   color: gray;
@@ -45,7 +45,7 @@
   transition: all ease-in-out 250ms;
 }
 
-.ItemDetail__TextContainer button:hover {
+.ItemDetail__AddToCart:hover {
   text-decoration: none;
   background-color: gray;
   color: white;

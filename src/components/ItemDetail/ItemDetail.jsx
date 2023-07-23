@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ItemDetailStyle.css";
 import { numberFormatting, restyleCategory } from "../../helpers/helpers";
+import ItemCount from "../ItemCount/ItemCount";
 
 function ItemDetail({ product }) {
-  console.log(product);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSustract = () => {
+    quantity > 1 && setQuantity(quantity - 1);
+  };
+
+  const handleAdd = () => {
+    setQuantity(quantity + 1);
+  };
 
   return (
     <>
@@ -19,11 +28,16 @@ function ItemDetail({ product }) {
         <p>{product.description}</p>
 
         <div>
-          <h6>Price: {numberFormatting(product.price)}</h6>
+          <h6>Price: ${numberFormatting(product.price)}</h6>
           <h6>Stock: {numberFormatting(product.stock)}</h6>
         </div>
 
-        <button>Add to cart</button>
+        <ItemCount
+          quantity={quantity}
+          handleSustract={handleSustract}
+          handleAdd={handleAdd}
+        />
+        <button className="ItemDetail__AddToCart">Add to cart</button>
       </div>
     </>
   );
