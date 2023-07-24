@@ -1,0 +1,19 @@
+.CartContainer {
+  width: 95%;
+  margin: 120px auto 0;
+}
+
+.CartContainer h1 {
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-weight: lighter;
+  margin-bottom: 2rem;
+}
+
+.CartContainer__ProductDetail {
+  display: flex;
+}
+
+.CartContainer__ProductDetail img {
+  height: 100px;
+}

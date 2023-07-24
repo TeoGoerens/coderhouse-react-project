@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartContext } from "./context/CartContext";
 import { useState } from "react";
+import CartContainer from "./components/Cart/CartContainer";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -22,14 +23,35 @@ function App() {
     }
   };
 
+  const cartInformation = () => {
+    return cart.reduce((acc, prod) => acc + prod.quantity, 0);
+  };
+
+  const totalCartAmount = () => {
+    return cart.reduce((acc, prod) => acc + prod.price * prod.quantity, 0);
+  };
+
+  const handleEmptyCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        cartInformation,
+        totalCartAmount,
+        handleEmptyCart,
+      }}
+    >
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/category/:id" element={<ItemListContainer />} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<CartContainer />} />
         </Routes>
       </BrowserRouter>
     </CartContext.Provider>

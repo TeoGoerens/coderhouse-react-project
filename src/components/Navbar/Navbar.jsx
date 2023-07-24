@@ -39,9 +39,7 @@ function Navbar() {
           ))}
 
           <li>
-            <NavLink to="/">
-              <CartWidget />
-            </NavLink>
+            <CartWidget />
           </li>
         </ul>
       </nav>
