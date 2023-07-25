@@ -18,10 +18,7 @@ const CartContainer = () => {
         {cart.map((prod) => (
           <div className="CartContainer__ProductDetail" key={prod.id}>
             <div className="CartContainer__ProductDetail__ImageContainer">
-              <img
-                src={require("../../assets/img/" + prod.image)}
-                alt={prod.name}
-              />
+              <img src={prod.image} alt={prod.name} />
             </div>
             <h4 className="CartContainer__ProductDetail__ProductName">
               {prod.name}

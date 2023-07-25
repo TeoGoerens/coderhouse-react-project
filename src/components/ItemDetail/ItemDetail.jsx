@@ -20,10 +20,7 @@ function ItemDetail({ product }) {
   return (
     <>
       <div className="ItemDetail__ImageContainer">
-        <img
-          src={require("../../assets/img/" + product.image)}
-          alt={product.name}
-        />
+        <img src={product.image} alt={product.name} />
       </div>
       <div className="ItemDetail__TextContainer">
         <h2>{product.name}</h2>

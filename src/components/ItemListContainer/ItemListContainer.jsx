@@ -3,24 +3,25 @@ import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { restyleCategory } from "../../helpers/helpers";
-import data from "../../assets/data/products.json";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../firebase/firebase";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    const prom = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 2000);
-    });
+    const productsFromDatabase = collection(database, "products");
 
-    prom.then((result) => {
+    getDocs(productsFromDatabase).then((resp) => {
+      const productsArray = resp.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
+
       if (id) {
-        setProducts(result.filter((product) => product.category === id));
+        setProducts(productsArray.filter((prod) => prod.category === id));
       } else {
-        setProducts(result);
+        setProducts(productsArray);
       }
     });
   }, [id]);

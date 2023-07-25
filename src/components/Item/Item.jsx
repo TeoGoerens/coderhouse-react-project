@@ -7,10 +7,7 @@ function Item({ product }) {
   return (
     <div className="itemCard">
       <h4>{product.name}</h4>
-      <img
-        src={require("../../assets/img/" + product.image)}
-        alt={product.name}
-      />
+      <img src={product.image} alt={product.name} />
       <h5>Price: ${numberFormatting(product.price)}</h5>
       <h6>Stock: {numberFormatting(product.stock)}</h6>
       <p>{product.description}</p>
