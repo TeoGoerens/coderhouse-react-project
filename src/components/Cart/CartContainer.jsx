@@ -2,28 +2,51 @@ import React, { useContext } from "react";
 import "./CartContainerStyle.css";
 import { CartContext } from "../../context/CartContext";
 import { numberFormatting } from "../../helpers/helpers";
+import { Link } from "react-router-dom";
 
 const CartContainer = () => {
-  const { cart, totalCartAmount, handleEmptyCart } = useContext(CartContext);
+  const { cart, totalCartAmount, emptyCart } = useContext(CartContext);
+
+  const handleEmptyCart = () => {
+    emptyCart();
+  };
 
   return (
     <div className="CartContainer">
       <h1>Cart Details</h1>
-      {cart.map((prod) => (
-        <div className="CartContainer__ProductDetail" key={prod.id}>
-          <img
-            src={require("../../assets/img/" + prod.image)}
-            alt={prod.name}
-          />
-          <h4>{prod.name}</h4>
-          <p>Quantity: {prod.quantity}</p>
-          <p>Unit Price: ${numberFormatting(prod.price)}</p>
-          <p>Total Price: ${numberFormatting(prod.quantity * prod.price)}</p>
-        </div>
-      ))}
+      <div className="CartContainer__Products">
+        {cart.map((prod) => (
+          <div className="CartContainer__ProductDetail" key={prod.id}>
+            <div className="CartContainer__ProductDetail__ImageContainer">
+              <img
+                src={require("../../assets/img/" + prod.image)}
+                alt={prod.name}
+              />
+            </div>
+            <h4 className="CartContainer__ProductDetail__ProductName">
+              {prod.name}
+            </h4>
+            <p>Quantity: {prod.quantity}</p>
+            <p>Unit Price: ${numberFormatting(prod.price)}</p>
+            <p>Total Price: ${numberFormatting(prod.quantity * prod.price)}</p>
+          </div>
+        ))}
+      </div>
 
-      <h3>Total Cart: ${numberFormatting(totalCartAmount())}</h3>
-      <button onClick={handleEmptyCart()}>Empty Cart</button>
+      {cart.length > 0 ? (
+        <>
+          <h3 className="CartContainer__TotalCart">
+            Total Cart: ${numberFormatting(totalCartAmount())}
+          </h3>
+          <button className="EmptyCartButton" onClick={handleEmptyCart}>
+            Empty Cart
+          </button>
+        </>
+      ) : (
+        <h3 className="CartContainer__ShopNow">
+          Start shopping <Link to="/">now...</Link>
+        </h3>
+      )}
     </div>
   );
 };
