@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { restyleCategory } from "../../helpers/helpers";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "../../firebase/firebase";
 
 function ItemListContainer() {
@@ -12,17 +12,16 @@ function ItemListContainer() {
 
   useEffect(() => {
     const productsFromDatabase = collection(database, "products");
+    const myQuery = id
+      ? query(productsFromDatabase, where("category", "==", id))
+      : productsFromDatabase;
 
-    getDocs(productsFromDatabase).then((resp) => {
+    getDocs(myQuery).then((resp) => {
       const productsArray = resp.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
       });
 
-      if (id) {
-        setProducts(productsArray.filter((prod) => prod.category === id));
-      } else {
-        setProducts(productsArray);
-      }
+      setProducts(productsArray);
     });
   }, [id]);
 

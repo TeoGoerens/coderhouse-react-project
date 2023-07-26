@@ -35,9 +35,13 @@ const CartContainer = () => {
           <h3 className="CartContainer__TotalCart">
             Total Cart: ${numberFormatting(totalCartAmount())}
           </h3>
-          <button className="EmptyCartButton" onClick={handleEmptyCart}>
+          <button className="CartButton" onClick={handleEmptyCart}>
             Empty Cart
           </button>
+
+          <Link className="CartButton" to="/checkout">
+            Purchase
+          </Link>
         </>
       ) : (
         <h3 className="CartContainer__ShopNow">

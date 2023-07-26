@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartWidget from "./CartWidget";
 import "./NavbarStyle.css";
 import { NavLink } from "react-router-dom";
-import data from "../../assets/data/products.json";
 import { restyleCategory } from "../../helpers/helpers";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../firebase/firebase";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
@@ -12,7 +13,16 @@ function Navbar() {
     setClicked(!clicked);
   };
 
-  let categories = data.map((product) => product.category);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const productsFromDatabase = collection(database, "products");
+    getDocs(productsFromDatabase).then((resp) => {
+      const allCategories = resp.docs.map((doc) => doc.data().category);
+      setCategories(allCategories);
+    });
+  }, []);
+
   let uniqueCategories = [...new Set(categories)].sort();
 
   return (

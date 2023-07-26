@@ -1,0 +1,35 @@
+.CheckoutContainer {
+  width: 95%;
+  margin: 120px auto 0;
+}
+
+.CheckoutContainer h1 {
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-weight: lighter;
+  margin-bottom: 2rem;
+}
+
+.CheckoutContainer p {
+  text-align: center;
+}
+
+.FormButton {
+  text-decoration: none;
+  border: 1px solid gray;
+  color: gray;
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 140px;
+  transition: all ease-in-out 250ms;
+}
+
+.FormButton:hover {
+  text-decoration: none;
+  background-color: gray;
+  color: white;
+  scale: 1.05;
+}

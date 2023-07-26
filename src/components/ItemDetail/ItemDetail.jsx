@@ -5,9 +5,8 @@ import ItemCount from "../ItemCount/ItemCount";
 import { CartContext } from "../../context/CartContext";
 
 function ItemDetail({ product }) {
-  const { cart, addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
-  console.log(cart);
 
   const handleSustract = () => {
     quantity > 1 && setQuantity(quantity - 1);

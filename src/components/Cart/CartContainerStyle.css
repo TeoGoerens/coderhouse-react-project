@@ -53,7 +53,7 @@
   text-decoration: none;
 }
 
-.EmptyCartButton {
+.CartButton {
   text-decoration: none;
   border: 1px solid gray;
   color: gray;
@@ -66,9 +66,13 @@
   transition: all ease-in-out 250ms;
 }
 
-.EmptyCartButton:hover {
+.CartButton:hover {
   text-decoration: none;
   background-color: gray;
   color: white;
   scale: 1.05;
+}
+
+.Checkout {
+  text-decoration: none;
 }
