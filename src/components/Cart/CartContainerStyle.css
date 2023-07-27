@@ -33,18 +33,26 @@
 .CartContainer__ProductDetail img {
   height: 80px;
 }
-.CartContainer__ProductDetail h4,
-.CartContainer__ProductDetail p {
+.CartContainer__ProductDetail h4 {
   margin-bottom: 0;
 }
 
+.CartContainer__ProductDetail p {
+  margin: 0 auto;
+}
+
+.CartContainer__ProductDetail p:last-child {
+  font-weight: bold;
+}
+
 .CartContainer__ProductDetail__ProductName {
-  width: 200px;
+  width: 300px;
 }
 
 .CartContainer__TotalCart {
   text-align: end;
   margin-top: 2rem;
+  font-weight: bold;
 }
 
 .CartContainer__ShopNow a {

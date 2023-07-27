@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CheckoutStyle.css";
 import { CartContext } from "../../context/CartContext";
 import { collection, addDoc } from "firebase/firestore";
@@ -9,8 +9,16 @@ const Checkout = () => {
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
+    phone: "",
   });
   const [orderId, setOrderId] = useState("");
+
+  const [date, setDate] = useState();
+
+  useEffect(() => {
+    const today = new Date();
+    setDate(today);
+  }, []);
 
   const handleValues = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -21,6 +29,7 @@ const Checkout = () => {
 
     const order = {
       client: formValues,
+      orderdate: date,
       content: cart,
       amount: totalCartAmount(),
     };
@@ -48,8 +57,9 @@ const Checkout = () => {
     <div className="CheckoutContainer">
       <h1>Submit your personal information</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form className="CheckoutForm" onSubmit={handleSubmit}>
         <input
+          className="CheckoutForm__Input"
           type="text"
           value={formValues.name}
           placeholder="Write your name"
@@ -57,11 +67,20 @@ const Checkout = () => {
           name="name"
         />
         <input
+          className="CheckoutForm__Input"
           type="email"
           value={formValues.email}
           placeholder="Write your email"
           onChange={handleValues}
           name="email"
+        />
+        <input
+          className="CheckoutForm__Input"
+          type="text"
+          value={formValues.phone}
+          placeholder="Write your phone number"
+          onChange={handleValues}
+          name="phone"
         />
 
         <button className="FormButton">Submit purchase</button>
